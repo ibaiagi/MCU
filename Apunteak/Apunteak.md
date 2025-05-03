@@ -43,6 +43,8 @@
             - [6.4.2.1. Set-Enable](#6421-set-enable)
             - [6.4.2.2. Clear enable](#6422-clear-enable)
         - [6.4.3. TIMER baten adibidea](#643-timer-baten-adibidea)
+    - [6.5. APIak](#65-apiak)
+        - [6.5.1. TIMER etendura](#651-timer-etendura)
 - [7. PWM](#7-pwm)
     - [7.1. Oinarrizko konfigurazioak](#71-oinarrizko-konfigurazioak)
     - [7.2. PWM modura jarri](#72-pwm-modura-jarri)
@@ -862,9 +864,9 @@ NVIC:
     * `ICER[0] = 1;`
     * Naiz eta 0 idatzi ez du ezer egingo.
 
-## APIak
+## 6.5. APIak
 
-### TIMER etendura
+### 6.5.1. TIMER etendura
 
 Etendura aktibatu:
 ```c
