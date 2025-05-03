@@ -168,7 +168,7 @@ Non x = A, B, C ... GPIO portu desberdinak diren (helbide desberdinak)
 Gaur egungo µC-tan:
 * Periferikoak pinetan multiplexatuak daude: pin bakoitzak funtzio alternatibo bat bainio gehiago
 
-<img src="./irudiak/GPIO/image.png" alt="GPIO batek izan ditzazkeen funtzio posibleak" style="width:20%">
+<img src="./Irudiak/GPIO/image.png" alt="GPIO batek izan ditzazkeen funtzio posibleak" style="width:20%">
 
 * Periferikoei bus-ean banan-banan clock-a kentzea eta kontsumo baxuagoan sartzea posible da (defektuz horrela daude)
 
@@ -177,13 +177,13 @@ Gaur egungo µC-tan, periferiko bat erabili aurretik:
 ➋ Pin-aren funtzio zuzena aukeratu
 ➌ Periferikoa konfiguratu
 
-<img src="./irudiak/GPIO/image2.png" alt="GPIO baten hasieraketa" style="width:30%">
+<img src="./Irudiak/GPIO/image2.png" alt="GPIO baten hasieraketa" style="width:30%">
 
 Multiplexatutako funtzio alternatiboen artean hautatzeko:
 * STM32-an , multiplexatzailea GPIO-en parte da
 * GPIOx_AFRL eta GPIOx_AFRH erregistro bitartez konfiguratzen da
 
-<img src="./irudiak/GPIO/image3.png" alt="Alternate Functions" style="width:30%">
+<img src="./Irudiak/GPIO/image3.png" alt="Alternate Functions" style="width:30%">
 
 ## 4.1. GPIO Programazioa
 
@@ -452,7 +452,7 @@ uint8_t gpioIrakurri(GPIO_TypeDef * GPIOx, uint8_t pin_zbk)
 * CNT: Counter
 * ARR: Auto Reload
 
-<img src="./irudiak/TIMERak/image.png" alt="Timer egitura" style="width:30%">
+<img src="./Irudiak/TIMERak/image.png" alt="Timer egitura" style="width:30%">
 
 
 ## 5.1. Prescaler
@@ -476,7 +476,7 @@ Jarri nahi den muga beti -1
 
 ## 5.4. PLL
 
-<img src="./irudiak/TIMERak/image-1.png" alt="PLL egitura" style="width:40%">
+<img src="./Irudiak/TIMERak/image-1.png" alt="PLL egitura" style="width:40%">
 
 Kristala: 
 * Oso zehatza da, baina frekuentzia baxua du.
@@ -493,7 +493,7 @@ VCO:
 
 ## 5.5. Clock sistema
 
-<img src="./irudiak/TIMERak/image-2.png" alt="Clock egitura orokorra" style="width:30%">
+<img src="./Irudiak/TIMERak/image-2.png" alt="Clock egitura orokorra" style="width:30%">
 
 
 ## 5.6. HSI eta HSE
@@ -743,7 +743,7 @@ AFRL == AFR[0]; AFRH == AFR[1];
 - **AF13** and **AF14**: Reserved for future functions or custom uses.
 - **AF15**: Used for **JTAG/SWD** debugging functions or external oscillator connections.
 
-<img src="./irudiak/PWM/image.png" alt="Alernate Functions" style="width:30%">
+<img src="./Irudiak/PWM/image.png" alt="Alernate Functions" style="width:30%">
 
 ### 7.8.2. Example of Alternate Function Usage:e**:
 For example, if you want to use **PB3** (Pin 3 on Port B) for **PWM (TIM2_CH2)**, you would select:
