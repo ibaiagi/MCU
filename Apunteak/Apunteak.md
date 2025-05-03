@@ -1,50 +1,59 @@
 # 1. Aurkibidea
 
 <!-- TOC -->
-- [2.1. Erreferentziak](#21-erreferentziak)
-- [3.1. Periferikoen konfigurazioa](#31-periferikoen-konfigurazioa)
-  - [3.1.1. Erakusle edo puntero bidez:](#311-erakusle-edo-puntero-bidez)
-- [4.1. GPIO Programazioa](#41-gpio-programazioa)
-  - [4.1.1. RCC busa aktibatu](#411-rcc-busa-aktibatu)
-  - [4.1.2. GPIO erregistroa konfiguratu](#412-gpio-erregistroa-konfiguratu)
-  - [4.1.3. GPIO Piztu / Itzali](#413-gpio-piztu--itzali)
-  - [4.1.4. GPIO Irakurri](#414-gpio-irakurri)
-- [5.1. Prescaler](#51-prescaler)
-- [5.2. Counter](#52-counter)
-- [5.3. Auto Reload](#53-auto-reload)
-- [5.4. PLL](#54-pll)
-  - [5.4.1. Konparaketa](#541-konparaketa)
-- [5.5. Clock sistema](#55-clock-sistema)
-- [5.6. HSI eta HSE](#56-hsi-eta-hse)
-- [5.7. STM32F303RET6](#57-stm32f303ret6)
-- [6.1. Polling](#61-polling)
-- [6.2. IRQ](#62-irq)
-- [6.3. NVIC](#63-nvic)
-- [6.4. Etendura motak](#64-etendura-motak)
-  - [6.4.1. Salbuespenak](#641-salbuespenak)
-  - [6.4.2. Etendurak](#642-etendurak)
-- [6.5. Etendura funtzioak](#65-etendura-funtzioak)
-- [6.6. Etendura zenbakiak (ISER bektoreko bit-a)](#66-etendura-zenbakiak-iser-bektoreko-bit-a)
-- [6.7. Adibidea](#67-adibidea)
-  - [6.7.1. Polling bidez funtzioari deiu](#671-polling-bidez-funtzioari-deiu)
-  - [6.7.2. Etendura bidez](#672-etendura-bidez)
-- [7.1. Oinarrizko konfigurazioak](#71-oinarrizko-konfigurazioak)
-- [7.2. PWM modura jarri](#72-pwm-modura-jarri)
-- [7.3. Irteera aktibatu x kanalarentzako](#73-irteera-aktibatu-x-kanalarentzako)
-- [7.4. ARR preload](#74-arr-preload)
-- [7.5. Force update to load settings](#75-force-update-to-load-settings)
-- [7.6. Kontagailua aktibatu](#76-kontagailua-aktibatu)
-- [7.7. Erabilera adibidea](#77-erabilera-adibidea)
-- [7.8. GPIO alternate function](#78-gpio-alternate-function)
-  - [7.8.1. AFR](#781-afr)
-    - [7.8.1.1. AFRL (Alternate Function Low Register) Pin Function Selection](#7811-afrl-alternate-function-low-register-pin-function-selection)
-      - [7.8.1.1.1. Explanation:n**:](#78111-explanationn)
-  - [7.8.2. Example of Alternate Function Usage:e**:](#782-example-of-alternate-function-usagee)
-- [8.1. Aldagaia uneoro RAMean idatzi / irakurri](#81-aldagaia-uneoro-ramean-idatzi--irakurri)
-- [8.2. Punteroak](#82-punteroak)
-- [8.3. Shifter-a](#83-shifter-a)
-- [8.4. struct-a](#84-struct-a)
-- [9.1. Konpilatzailearen optimizazio ezarpenak](#91-konpilatzailearen-optimizazio-ezarpenak)
+- [1. Aurkibidea](#1-aurkibidea)
+- [2. Mikrokontrolagailua](#2-mikrokontrolagailua)
+    - [2.1. Erreferentziak](#21-erreferentziak)
+- [3. Periferikoak](#3-periferikoak)
+    - [3.1. Periferikoen konfigurazioa](#31-periferikoen-konfigurazioa)
+        - [3.1.1. Erakusle edo puntero bidez:](#311-erakusle-edo-puntero-bidez)
+- [4. GPIO](#4-gpio)
+    - [4.1. GPIO Programazioa](#41-gpio-programazioa)
+        - [4.1.1. RCC busa aktibatu](#411-rcc-busa-aktibatu)
+        - [4.1.2. GPIO erregistroa konfiguratu](#412-gpio-erregistroa-konfiguratu)
+        - [4.1.3. GPIO Piztu / Itzali](#413-gpio-piztu--itzali)
+        - [4.1.4. GPIO Irakurri](#414-gpio-irakurri)
+- [5. TIMERak](#5-timerak)
+    - [5.1. Prescaler](#51-prescaler)
+    - [5.2. Counter](#52-counter)
+    - [5.3. Auto Reload](#53-auto-reload)
+    - [5.4. PLL](#54-pll)
+        - [5.4.1. Konparaketa](#541-konparaketa)
+    - [5.5. Clock sistema](#55-clock-sistema)
+    - [5.6. HSI eta HSE](#56-hsi-eta-hse)
+    - [5.7. STM32F303RET6](#57-stm32f303ret6)
+- [6. Etendurak](#6-etendurak)
+    - [6.1. Polling](#61-polling)
+    - [6.2. IRQ](#62-irq)
+    - [6.3. NVIC](#63-nvic)
+    - [6.4. Etendura motak](#64-etendura-motak)
+        - [6.4.1. Salbuespenak](#641-salbuespenak)
+        - [6.4.2. Etendurak](#642-etendurak)
+    - [6.5. Etendura funtzioak](#65-etendura-funtzioak)
+    - [6.6. Etendura zenbakiak (ISER bektoreko bit-a)](#66-etendura-zenbakiak-iser-bektoreko-bit-a)
+    - [6.7. Adibidea](#67-adibidea)
+        - [6.7.1. Polling bidez funtzioari deiu](#671-polling-bidez-funtzioari-deiu)
+        - [6.7.2. Etendura bidez](#672-etendura-bidez)
+- [7. PWM](#7-pwm)
+    - [7.1. Oinarrizko konfigurazioak](#71-oinarrizko-konfigurazioak)
+    - [7.2. PWM modura jarri](#72-pwm-modura-jarri)
+    - [7.3. Irteera aktibatu x kanalarentzako](#73-irteera-aktibatu-x-kanalarentzako)
+    - [7.4. ARR preload](#74-arr-preload)
+    - [7.5. Force update to load settings](#75-force-update-to-load-settings)
+    - [7.6. Kontagailua aktibatu](#76-kontagailua-aktibatu)
+    - [7.7. Erabilera adibidea](#77-erabilera-adibidea)
+    - [7.8. GPIO alternate function](#78-gpio-alternate-function)
+        - [7.8.1. AFR](#781-afr)
+            - [7.8.1.1. AFRL (Alternate Function Low Register) Pin Function Selection](#7811-afrl-alternate-function-low-register-pin-function-selection)
+                - [7.8.1.1.1. Explanation:n**:](#78111-explanationn)
+        - [7.8.2. Example of Alternate Function Usage:e**:](#782-example-of-alternate-function-usagee)
+- [8. C programazioa](#8-c-programazioa)
+    - [8.1. Aldagaia uneoro RAMean idatzi / irakurri](#81-aldagaia-uneoro-ramean-idatzi--irakurri)
+    - [8.2. Punteroak](#82-punteroak)
+    - [8.3. Shifter-a](#83-shifter-a)
+    - [8.4. struct-a](#84-struct-a)
+- [9. Konpilatzailea](#9-konpilatzailea)
+    - [9.1. Konpilatzailearen optimizazio ezarpenak](#91-konpilatzailearen-optimizazio-ezarpenak)
 <!-- /TOC -->
 
 
@@ -159,7 +168,7 @@ Non x = A, B, C ... GPIO portu desberdinak diren (helbide desberdinak)
 Gaur egungo µC-tan:
 * Periferikoak pinetan multiplexatuak daude: pin bakoitzak funtzio alternatibo bat bainio gehiago
 
-<img src="irudiak/GPIO/image.png" alt="GPIO batek izan ditzazkeen funtzio posibleak" style="width:20%">
+<img src="./irudiak/GPIO/image.png" alt="GPIO batek izan ditzazkeen funtzio posibleak" style="width:20%">
 
 * Periferikoei bus-ean banan-banan clock-a kentzea eta kontsumo baxuagoan sartzea posible da (defektuz horrela daude)
 
@@ -168,13 +177,13 @@ Gaur egungo µC-tan, periferiko bat erabili aurretik:
 ➋ Pin-aren funtzio zuzena aukeratu
 ➌ Periferikoa konfiguratu
 
-<img src="irudiak/GPIO/image2.png" alt="GPIO baten hasieraketa" style="width:30%">
+<img src="./irudiak/GPIO/image2.png" alt="GPIO baten hasieraketa" style="width:30%">
 
 Multiplexatutako funtzio alternatiboen artean hautatzeko:
 * STM32-an , multiplexatzailea GPIO-en parte da
 * GPIOx_AFRL eta GPIOx_AFRH erregistro bitartez konfiguratzen da
 
-<img src="irudiak/GPIO/image3.png" alt="Alternate Functions" style="width:30%">
+<img src="./irudiak/GPIO/image3.png" alt="Alternate Functions" style="width:30%">
 
 ## 4.1. GPIO Programazioa
 
@@ -443,7 +452,7 @@ uint8_t gpioIrakurri(GPIO_TypeDef * GPIOx, uint8_t pin_zbk)
 * CNT: Counter
 * ARR: Auto Reload
 
-<img src="irudiak/TIMERak/image.png" alt="Timer egitura" style="width:30%">
+<img src="./irudiak/TIMERak/image.png" alt="Timer egitura" style="width:30%">
 
 
 ## 5.1. Prescaler
@@ -467,7 +476,7 @@ Jarri nahi den muga beti -1
 
 ## 5.4. PLL
 
-<img src="irudiak/TIMERak/image-1.png" alt="PLL egitura" style="width:40%">
+<img src="./irudiak/TIMERak/image-1.png" alt="PLL egitura" style="width:40%">
 
 Kristala: 
 * Oso zehatza da, baina frekuentzia baxua du.
@@ -484,7 +493,7 @@ VCO:
 
 ## 5.5. Clock sistema
 
-<img src="irudiak/TIMERak/image-2.png" alt="Clock egitura orokorra" style="width:30%">
+<img src="./irudiak/TIMERak/image-2.png" alt="Clock egitura orokorra" style="width:30%">
 
 
 ## 5.6. HSI eta HSE
@@ -734,7 +743,7 @@ AFRL == AFR[0]; AFRH == AFR[1];
 - **AF13** and **AF14**: Reserved for future functions or custom uses.
 - **AF15**: Used for **JTAG/SWD** debugging functions or external oscillator connections.
 
-<img src="irudiak/PWM/image.png" alt="Alernate Functions" style="width:30%">
+<img src="./irudiak/PWM/image.png" alt="Alernate Functions" style="width:30%">
 
 ### 7.8.2. Example of Alternate Function Usage:e**:
 For example, if you want to use **PB3** (Pin 3 on Port B) for **PWM (TIM2_CH2)**, you would select:
