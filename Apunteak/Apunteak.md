@@ -7,6 +7,11 @@
 - [3. Periferikoak](#3-periferikoak)
     - [3.1. Periferikoen konfigurazioa](#31-periferikoen-konfigurazioa)
         - [3.1.1. Erakusle edo puntero bidez:](#311-erakusle-edo-puntero-bidez)
+            - [3.1.1.1. Zatikatuta](#3111-zatikatuta)
+            - [3.1.1.2. zuzenean idatzita](#3112-zuzenean-idatzita)
+            - [3.1.1.3. `#include` bitartez](#3113-include-bitartez)
+            - [3.1.1.4. Helbide + offset](#3114-helbide--offset)
+            - [3.1.1.5. Struct erabiliz](#3115-struct-erabiliz)
 - [4. GPIO](#4-gpio)
     - [4.1. Erregistroak](#41-erregistroak)
     - [4.2. Clock-a](#42-clock-a)
@@ -99,18 +104,18 @@ uint32_t    *p = (uint32_t*) 0xF412A987;    // Erregistro helbidea
 
 egiteko beste modu batzuk:
 
-a. Zatikatuta
+#### 3.1.1.1. Zatikatuta
 ```c 
 volatile uint32_t   *p =(volatile uint32_t*)0xF412A987;
                     *p= 0x4A76;
 ```
 
-b. zuzenean idatzita
+#### 3.1.1.2. zuzenean idatzita
 ```c 
 (*((uint32_t*) 0xF412A987))=0x4A76;
 ```
 
-c. `#include` bitartez
+#### 3.1.1.3. `#include` bitartez
 
 erregistroak.h
 ```c 
@@ -123,16 +128,18 @@ main.c
 REG_STATUS = 0x4A76;
 ```
 
-d. Helbide + offset
+#### 3.1.1.4. Helbide + offset
 
 Adib.Periferikoa 0x10000000-n eta erregistroak offset = 10, 20, 30 ...
 ```c
 //Funtzio bat punteroa kalkulatzeko
-uint32_t* reg(uint32_t periphbase,uint32_t regOffset) {
-return ((uint32_t*)(gpioBase+regOffset));
+uint32_t* reg (uint32_t periph_helbidea, uint32_t periph_offset)
+{
+	return (uint32_t*)(periph_helbidea + periph_offset);
 }
+
 //Laburdura bat REG (a,b) -> *gpio_reg(a,b) idazteko (aukerakoa)
-#define REG(BASE,OFFSET) (*(gpio_reg(BASE,OFFSET)))
+#define REG(a,b) (*reg(a, b))
 //Helbideak eta offset-ak
 #define GPIOA 0x100000
 #define ODR 10
@@ -141,12 +148,12 @@ return ((uint32_t*)(gpioBase+regOffset));
 
 
 int main(void) {
-REG (GPIOA, ODR)=5;
+REG (GPIOA, ODR)=5; // *reg(GPIOA, ODR)=5;
 uint32_t input = REG (GPIOA,IDR);
 }
 ```
 
-e. Struct erabiliz
+#### 3.1.1.5. Struct erabiliz
 
 ```c
 //Funtzio bat punteroa kalkulatzeko
@@ -156,13 +163,14 @@ volatile uint32_t MODER;
 volatile uint32_t PUPDR;
 volatile uint16_t IDR;
 volatile uint16_t ODR;
-} GPIO_TypeDef;//Helbideak eta offset-ak
-#define GPIOA ((GPIO_TypeDef *) 0x1000000)
+}GPIO_TypeDef;//Helbideak eta offset-ak
 
+#define GPIOA ((GPIO_TypeDef *) 0x1000000)      // 1. aukera
+GPIO_TypeDef *GPIOA = (GPIO_TypeDef*)0x1000000; // 2. aukera
 
-int main(void) {
-GPIOA->IDR=5;
-}
+GPIOA->MODER	&= ~(3<<(moder_bit_zbk));
+GPIOA->MODER 	|= 1<<(moder_bit_zbk);
+
 ```
 
 
